@@ -32,7 +32,7 @@ public class HomestaySearchTest {
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        driver.get("http://localhost:8081/healingland/index.jsp"); // Đường dẫn tới trang index.jsp của bạn
+        driver.get("http://localhost:8080/healingland/index.jsp"); // Đường dẫn tới trang index.jsp của bạn
         homestaySearchPage = new HomestaySearchPage(driver);
     }
 
@@ -43,7 +43,7 @@ public class HomestaySearchTest {
         homestaySearchPage.selectDistrict("Hải Châu");
 
         // Enter check-in date
-        homestaySearchPage.enterCheckInDate("2024-07-20");
+        homestaySearchPage.enterCheckInDate("07-20-2024");
 
         // Leave check-out date blank
         homestaySearchPage.leaveCheckOutDateBlank();

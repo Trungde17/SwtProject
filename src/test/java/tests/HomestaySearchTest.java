@@ -38,7 +38,7 @@ public class HomestaySearchTest {
 
     // Search correct location, fill blank date check out, date correct check in and correct number of guest
     @Test
-    public void testSearchWithBlankCheckOutDate() {
+    public void testSearchWithBlankCheckOutDate() throws InterruptedException {
         // Select location
         homestaySearchPage.selectDistrict("Hải Châu");
 
@@ -53,7 +53,7 @@ public class HomestaySearchTest {
 
         // Click search button
         homestaySearchPage.clickSearchButton();
-
+        Thread.sleep(5000);
         // Verify URL change after search
         String currentUrl = driver.getCurrentUrl();
         assertTrue(currentUrl.contains("searchServlet"), "URL should contain 'homestaySearch' after search");

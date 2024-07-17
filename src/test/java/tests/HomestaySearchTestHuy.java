@@ -11,14 +11,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomestaySearchPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pages.HomestaySearchPageQHuy;
 
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HomestaySearchTest {
+public class HomestaySearchTestHuy {
     private WebDriver driver;
-    private HomestaySearchPage homestaySearchPage;
+    private HomestaySearchPageQHuy homestaySearchPage;
     private WebDriverWait wait;
 
     @BeforeEach
@@ -28,38 +29,8 @@ public class HomestaySearchTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        driver.get("http://localhost:8080/healingland/index.jsp"); // Update the URL to match your environment
-        homestaySearchPage = new HomestaySearchPage(driver);
-    }
-
-    @Test
-    public void testSearchWithBlankCheckOutDate() {
-        System.out.println("Test: Search with Blank Check-Out Date");
-        homestaySearchPage.selectDistrict("Hải Châu");
-        homestaySearchPage.enterCheckInDate("07-20-2024");
-        homestaySearchPage.leaveCheckOutDateBlank();
-        homestaySearchPage.selectGuests("2");
-        homestaySearchPage.clickSearchButton();
-
-        String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("searchServlet"), "URL should contain 'searchServlet' after searching");
-
-        String pageSource = driver.getPageSource();
-        System.out.println(pageSource);
-
-        try {
-            System.out.println("Waiting for search results...");
-            WebElement searchResults = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-results")));
-            assertTrue(searchResults.isDisplayed(), "Search results should be displayed");
-
-            WebElement pagination = driver.findElement(By.className("pagination"));
-            assertTrue(pagination.isDisplayed(), "Pagination should be displayed");
-
-            WebElement firstResult = searchResults.findElement(By.cssSelector(".result-item"));
-            assertTrue(firstResult.isDisplayed(), "At least one search result should be displayed");
-        } catch (Exception e) {
-            System.out.println("Search results element not found. Exception: " + e.getMessage());
-        }
+        driver.get("http://localhost:8081/healingland/index.jsp"); // Update the URL to match your environment
+        homestaySearchPage = new HomestaySearchPageQHuy(driver);
     }
 
     @Test
@@ -99,7 +70,7 @@ public class HomestaySearchTest {
         System.out.println("Current URL: " + currentUrl);
 
         // Check if the URL does not change and print a message
-        if (currentUrl.equals("http://localhost:8080/healingland/index.jsp")) {
+        if (currentUrl.equals("http://localhost:8081/healingland/index.jsp")) {
             System.out.println("The URL did not change. The search operation might not have been triggered.");
         } else {
             assertTrue(currentUrl.contains("searchServlet"), "URL should contain 'searchServlet' after searching");
@@ -134,7 +105,7 @@ public class HomestaySearchTest {
         System.out.println("Current URL: " + currentUrl);
 
         // Check if the URL does not change and print a message
-        if (currentUrl.equals("http://localhost:8080/healingland/index.jsp")) {
+        if (currentUrl.equals("http://localhost:8081/healingland/index.jsp")) {
             System.out.println("The URL did not change. The search operation might not have been triggered.");
         } else {
             assertTrue(currentUrl.contains("searchServlet"), "URL should contain 'searchServlet' after searching");

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomestaySearchPage {
+public class HomestaySearchPageQHuy {
     private WebDriver driver;
 
     // Locators
@@ -20,7 +20,7 @@ public class HomestaySearchPage {
     private By searchButton = By.cssSelector("button[type='submit']");
 
     // Constructor
-    public HomestaySearchPage(WebDriver driver) {
+    public HomestaySearchPageQHuy(WebDriver driver) {
         this.driver = driver;
     }
 
